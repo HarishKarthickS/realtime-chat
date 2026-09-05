@@ -15,12 +15,12 @@ export function RoomList({ rooms, messages, unread, activeRoomId, onPick }: Prop
   const previews = sortPreviews(rooms.map((room) => previewForRoom(room, messages, unread)));
 
   return (
-    <section className="col" aria-label="Rooms">
-      <div className="col-head">rooms in the building</div>
+    <section className="col" aria-label="Booths">
+      <div className="col-head">booth tickets</div>
       {rooms.length === 0 ? (
         <QuietState
-          title="The directory is blank"
-          body="No rooms on this floor yet. If the wire is down, the names will not show."
+          title="No tickets on the spike"
+          body="The host stand is empty. If the neon is out, names will not print."
         />
       ) : (
       <ul className="room-list">
@@ -28,7 +28,7 @@ export function RoomList({ rooms, messages, unread, activeRoomId, onPick }: Prop
           <li key={room.id}>
             <button
               type="button"
-              className="room-btn"
+              className="ticket"
               data-active={room.id === activeRoomId ? "true" : "false"}
               onClick={() => onPick(room.id)}
             >

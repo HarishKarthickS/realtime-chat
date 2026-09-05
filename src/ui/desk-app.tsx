@@ -11,10 +11,10 @@ import { RoomList } from "@/ui/room-list";
 import { Thread } from "@/ui/thread";
 
 function statusCopy(connection: ReturnType<typeof useWire>["connection"]): { label: string; bad: boolean } {
-  if (connection === "live") return { label: "wire live", bad: false };
-  if (connection === "connecting") return { label: "plugging the lamp in", bad: false };
-  if (connection === "offline") return { label: "wire went quiet", bad: true };
-  if (connection === "error") return { label: "socket error", bad: true };
+  if (connection === "live") return { label: "neon on", bad: false };
+  if (connection === "connecting") return { label: "warming the tubes", bad: false };
+  if (connection === "offline") return { label: "jukebox unplugged", bad: true };
+  if (connection === "error") return { label: "short in the neon", bad: true };
   return { label: "idle", bad: false };
 }
 

@@ -20,8 +20,8 @@ export function Thread({ room, you, messages }: Props) {
   if (!room) {
     return (
       <QuietState
-        title="Pick a room"
-        body="The fire escape is usually the loudest. The roof is for when you need the city to look smaller."
+        title="Grab a booth"
+        body="Fire escape is the loud table. Water tower is for when you want the city small."
       />
     );
   }
@@ -35,8 +35,8 @@ export function Thread({ room, you, messages }: Props) {
       <div className="scroll" role="log" aria-live="polite">
         {messages.length === 0 ? (
           <QuietState
-            title="Nobody left a note"
-            body="The radiator ticks. You can be the first one to ruin the silence."
+            title="Napkin is blank"
+            body="The fryer pops. You can be first to write on the check."
           />
         ) : null}
         {messages.map((message) => {
