@@ -9,6 +9,11 @@ const sockets = new Map<WebSocket, ChatUser>();
 
 const wss = new WebSocketServer({ port: WS_PORT });
 
+wss.on("error", (err) => {
+  console.error("night wire failed to open:", err.message);
+  process.exit(1);
+});
+
 function push(socket: WebSocket, frame: ServerFrame) {
   if (socket.readyState === socket.OPEN) {
     socket.send(JSON.stringify(frame));

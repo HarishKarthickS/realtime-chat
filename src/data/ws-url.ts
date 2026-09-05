@@ -6,6 +6,6 @@ export function defaultWsUrl(): string {
   }
   const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
   const host = process.env.NEXT_PUBLIC_WS_HOST ?? window.location.hostname;
-  const port = process.env.NEXT_PUBLIC_WS_PORT ?? String(WS_PORT);
+  const port = process.env.NEXT_PUBLIC_WS_PORT ?? "3001";
   return `${proto}//${host}:${port}`;
 }
