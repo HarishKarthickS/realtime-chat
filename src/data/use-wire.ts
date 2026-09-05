@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ChatMessage, ChatUser, ConnectionState, PresenceMember, Room, RoomId } from "@/domain";
 import { parseServerFrame, type ClientFrame } from "./protocol";
-import { loadOrCreateYou } from "./session";
+import { loadOrCreateYou, persistYou } from "./session";
 import { defaultWsUrl } from "./ws-url";
 
 type WireState = {
@@ -154,6 +154,15 @@ export function useWire() {
     connect();
   }, [connect]);
 
+  const renameYou = useCallback((next: ChatUser) => {
+    persistYou(next);
+    youRef.current = next;
+    setState((s) => ({ ...s, you: next }));
+    send({ type: "hello", user: next });
+    const roomId = activeRef.current;
+    if (roomId) send({ type: "join", roomId });
+  }, [send]);
+
   const thread = useMemo(
     () => state.messages.filter((m) => m.roomId === state.activeRoomId),
     [state.messages, state.activeRoomId],
@@ -164,5 +173,5 @@ export function useWire() {
     [state.rooms, state.activeRoomId],
   );
 
-  return { ...state, thread, activeRoom, joinRoom, say, retryNow };
+  return { ...state, thread, activeRoom, joinRoom, say, retryNow, renameYou };
 }
