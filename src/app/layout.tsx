@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono } from "next/font/google";
+import { Archivo_Narrow, Pacifico } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const serif = Fraunces({
+const script = Pacifico({
   subsets: ["latin"],
-  variable: "--font-serif",
+  weight: "400",
+  variable: "--font-script",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const narrow = Archivo_Narrow({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-narrow",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "realtime-chat",
-  description: "Late-night rooms, who is still up, and the notes you left on the counter.",
+  description: "Vinyl booths, chrome rims, and a neon napkin bar for late talk.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${serif.variable} ${mono.variable}`} style={{ fontFamily: "var(--font-mono), var(--mono)" }}>
-        <div className="lamp-wash" aria-hidden />
-        <div className="grain" aria-hidden />
+      <body className={`${script.variable} ${narrow.variable}`}>
+        <div className="neon-halo" aria-hidden />
         {children}
       </body>
     </html>

@@ -10,15 +10,15 @@ type Props = {
 
 export function NightDesk({ clockLabel, statusLabel, statusBad, identity, children }: Props) {
   return (
-    <div className="desk">
+    <div className="booth">
       <header className="mast">
         <div>
           <h1>
-            realtime<span>-chat</span>
+            booth<span> chat</span>
           </h1>
-          <p>the hallway light is still on · not a status meeting</p>
+          <p>open all night · chrome rims</p>
         </div>
-        <div>
+        <div className="mast-meta">
           <div className="status-pill" data-bad={statusBad ? "true" : "false"}>
             {statusLabel}
           </div>
@@ -26,7 +26,7 @@ export function NightDesk({ clockLabel, statusLabel, statusBad, identity, childr
           {identity}
         </div>
       </header>
-      <div className="desk-body">{children}</div>
+      <div className="booth-body">{children}</div>
     </div>
   );
 }
