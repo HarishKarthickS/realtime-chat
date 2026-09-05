@@ -4,10 +4,11 @@ type Props = {
   clockLabel: string;
   statusLabel: string;
   statusBad?: boolean;
+  identity?: ReactNode;
   children: ReactNode;
 };
 
-export function NightDesk({ clockLabel, statusLabel, statusBad, children }: Props) {
+export function NightDesk({ clockLabel, statusLabel, statusBad, identity, children }: Props) {
   return (
     <div className="desk">
       <header className="mast">
@@ -22,6 +23,7 @@ export function NightDesk({ clockLabel, statusLabel, statusBad, children }: Prop
             {statusLabel}
           </div>
           <p>{clockLabel}</p>
+          {identity}
         </div>
       </header>
       <div className="desk-body">{children}</div>

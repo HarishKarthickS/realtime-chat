@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useWire } from "@/data";
 import { Composer } from "@/ui/composer";
 import { WireError } from "@/ui/empty-states";
+import { NamePlate } from "@/ui/name-plate";
 import { NightDesk } from "@/ui/night-desk";
 import { PresenceRail } from "@/ui/presence-rail";
 import { RoomList } from "@/ui/room-list";
@@ -33,7 +34,12 @@ export function DeskApp() {
   const live = wire.connection === "live";
 
   return (
-    <NightDesk clockLabel={clock} statusLabel={status.label} statusBad={status.bad}>
+    <NightDesk
+      clockLabel={clock}
+      statusLabel={status.label}
+      statusBad={status.bad}
+      identity={<NamePlate you={wire.you} onSave={wire.renameYou} />}
+    >
       <RoomList
         rooms={wire.rooms}
         messages={wire.messages}
