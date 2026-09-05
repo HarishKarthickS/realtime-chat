@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { useWire } from "@/data";
 import { Composer } from "@/ui/composer";
 import { WireError } from "@/ui/empty-states";
@@ -11,31 +10,21 @@ import { RoomList } from "@/ui/room-list";
 import { Thread } from "@/ui/thread";
 
 function statusCopy(connection: ReturnType<typeof useWire>["connection"]): { label: string; bad: boolean } {
-  if (connection === "live") return { label: "neon on", bad: false };
-  if (connection === "connecting") return { label: "warming the tubes", bad: false };
-  if (connection === "offline") return { label: "jukebox unplugged", bad: true };
-  if (connection === "error") return { label: "short in the neon", bad: true };
-  return { label: "idle", bad: false };
+  if (connection === "live") return { label: "Connected", bad: false };
+  if (connection === "connecting") return { label: "Connecting…", bad: false };
+  if (connection === "offline") return { label: "Offline", bad: true };
+  if (connection === "error") return { label: "Offline", bad: true };
+  return { label: "Connecting…", bad: false };
 }
 
 export function DeskApp() {
   const wire = useWire();
   const status = statusCopy(wire.connection);
-  const clock = useMemo(
-    () =>
-      new Date().toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        timeZone: "America/New_York",
-      }) + " · east coast",
-    [],
-  );
-
   const live = wire.connection === "live";
 
   return (
     <NightDesk
-      clockLabel={clock}
+      clockLabel=""
       statusLabel={status.label}
       statusBad={status.bad}
       identity={<NamePlate you={wire.you} onSave={wire.renameYou} />}

@@ -22,7 +22,7 @@ export function WireError({ detail, onRetry }: ErrorProps) {
     <div className="banner" role="alert">
       <div>{detail}</div>
       <button type="button" onClick={onRetry}>
-        kick the jukebox
+        Retry
       </button>
     </div>
   );

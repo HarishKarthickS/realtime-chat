@@ -21,13 +21,13 @@ export function Composer({ disabled, onSend }: Props) {
 
   return (
     <form className="composer" onSubmit={submit}>
-      <label htmlFor="note">chrome napkin bar</label>
+      <label htmlFor="note">Message</label>
       <div className="composer-row">
         <textarea
           id="note"
           value={draft}
           disabled={disabled}
-          placeholder="Scribble it. Pass it down the booth."
+          placeholder="Message"
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
@@ -40,10 +40,10 @@ export function Composer({ disabled, onSend }: Props) {
           }}
         />
         <button className="send" type="submit" disabled={!ok}>
-          pass
+          Send
         </button>
       </div>
-      {disabled ? <p className="preview">Bar locked until the neon is on.</p> : null}
+      {disabled ? <p className="preview">Connecting…</p> : null}
     </form>
   );
 }

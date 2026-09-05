@@ -22,7 +22,7 @@ export function NightDesk({ clockLabel, statusLabel, statusBad, identity, childr
           <div className="status-pill" data-bad={statusBad ? "true" : "false"}>
             {statusLabel}
           </div>
-          <p className="workspace-clock">{clockLabel}</p>
+          {clockLabel ? <p className="workspace-clock">{clockLabel}</p> : null}
         </header>
         <div className="sidebar-channels">{channels}</div>
         <div className="sidebar-foot">{identity}</div>

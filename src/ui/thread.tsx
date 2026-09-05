@@ -19,25 +19,19 @@ export function Thread({ room, you, messages }: Props) {
 
   if (!room) {
     return (
-      <QuietState
-        title="Grab a booth"
-        body="Fire escape is the loud table. Water tower is for when you want the city small."
-      />
+      <QuietState title="Select a channel" body="Pick a channel from the list to read and send messages." />
     );
   }
 
   return (
     <>
       <div className="thread-copy">
-        <h2>{room.name}</h2>
+        <h2>#{room.name}</h2>
         <p>{room.subtitle}</p>
       </div>
       <div className="scroll" role="log" aria-live="polite">
         {messages.length === 0 ? (
-          <QuietState
-            title="Napkin is blank"
-            body="The fryer pops. You can be first to write on the check."
-          />
+          <QuietState title="No messages yet" body="This channel is empty. Send the first message." />
         ) : null}
         {messages.map((message) => {
           const mine = message.author.id === you?.id;

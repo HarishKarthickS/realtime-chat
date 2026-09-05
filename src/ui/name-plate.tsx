@@ -16,7 +16,7 @@ export function NamePlate({ you, onSave }: Props) {
     setDraft(you?.displayName ?? "");
   }, [you?.displayName]);
 
-  if (!you) return <p className="preview">no name on the check</p>;
+  if (!you) return <p className="preview">Connecting…</p>;
 
   function submit(event: FormEvent) {
     event.preventDefault();
@@ -29,7 +29,7 @@ export function NamePlate({ you, onSave }: Props) {
   if (!open) {
     return (
       <button type="button" className="name-btn" onClick={() => setOpen(true)}>
-        check for {you.displayName}
+        {you.displayName}
       </button>
     );
   }
@@ -37,12 +37,12 @@ export function NamePlate({ you, onSave }: Props) {
   return (
     <form onSubmit={submit}>
       <label className="col-head" htmlFor="you-name" style={{ padding: 0 }}>
-        name on the check
+        Display name
       </label>
       <div className="composer-row">
         <input id="you-name" className="name-field" value={draft} onChange={(e) => setDraft(e.target.value)} />
         <button className="send" type="submit">
-          keep
+          Save
         </button>
       </div>
     </form>
