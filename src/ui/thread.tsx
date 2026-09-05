@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { formatClock, type ChatMessage, type ChatUser, type Room } from "@/domain";
+import { QuietState } from "@/ui/empty-states";
 
 type Props = {
   room: Room | null;
@@ -16,7 +17,14 @@ export function Thread({ room, you, messages }: Props) {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages.length, room?.id]);
 
-  if (!room) return null;
+  if (!room) {
+    return (
+      <QuietState
+        title="Pick a room"
+        body="The fire escape is usually the loudest. The roof is for when you need the city to look smaller."
+      />
+    );
+  }
 
   return (
     <>
@@ -25,6 +33,12 @@ export function Thread({ room, you, messages }: Props) {
         <p>{room.subtitle}</p>
       </div>
       <div className="scroll" role="log" aria-live="polite">
+        {messages.length === 0 ? (
+          <QuietState
+            title="Nobody left a note"
+            body="The radiator ticks. You can be the first one to ruin the silence."
+          />
+        ) : null}
         {messages.map((message) => {
           const mine = message.author.id === you?.id;
           return (

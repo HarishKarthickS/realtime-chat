@@ -43,6 +43,7 @@ export function Composer({ disabled, onSend }: Props) {
           send
         </button>
       </div>
+      {disabled ? <p className="preview">Composer locked until the wire is live.</p> : null}
     </form>
   );
 }
