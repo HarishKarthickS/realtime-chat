@@ -12,14 +12,11 @@ export function PresenceRail({ room, presence }: Props) {
   const members = room ? membersInRoom(presence, room.id) : [];
 
   return (
-    <aside className="col" aria-label="Who is at the counter">
-      <div className="col-head">at the counter</div>
+    <aside className="col" aria-label="Members">
+      <div className="col-head">Members</div>
       <div className="presence">
         {members.length === 0 ? (
-          <QuietState
-            title="Just you and the pie case"
-            body="Slide into a booth. Regulars wander in after last call."
-          />
+          <QuietState title="No one here" body="People in this channel show up when they join." />
         ) : null}
         {members.map((member) => (
           <div className="person" key={member.user.id}>
@@ -27,9 +24,7 @@ export function PresenceRail({ room, presence }: Props) {
             <div>
               <div>{member.user.displayName}</div>
               <small>
-                in {room?.name.toLowerCase()} · {minutesAgo(member.joinedAt) === 0
-                  ? "just now"
-                  : `${minutesAgo(member.joinedAt)}m`}
+                {minutesAgo(member.joinedAt) === 0 ? "Active now" : `Active ${minutesAgo(member.joinedAt)}m ago`}
               </small>
             </div>
           </div>
