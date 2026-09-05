@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Children, type ReactNode } from "react";
 
 type Props = {
   clockLabel: string;
@@ -9,24 +9,26 @@ type Props = {
 };
 
 export function NightDesk({ clockLabel, statusLabel, statusBad, identity, children }: Props) {
+  const panes = Children.toArray(children);
+  const channels = panes[0];
+  const thread = panes[1];
+  const presence = panes[2];
+
   return (
-    <div className="booth">
-      <header className="mast">
-        <div>
-          <h1>
-            booth<span> chat</span>
-          </h1>
-          <p>open all night · chrome rims</p>
-        </div>
-        <div className="mast-meta">
+    <div className="workspace">
+      <aside className="sidebar">
+        <header className="workspace-head">
+          <h1>realtime-chat</h1>
           <div className="status-pill" data-bad={statusBad ? "true" : "false"}>
             {statusLabel}
           </div>
-          <p>{clockLabel}</p>
-          {identity}
-        </div>
-      </header>
-      <div className="booth-body">{children}</div>
+          <p className="workspace-clock">{clockLabel}</p>
+        </header>
+        <div className="sidebar-channels">{channels}</div>
+        <div className="sidebar-foot">{identity}</div>
+      </aside>
+      {thread}
+      {presence}
     </div>
   );
 }
