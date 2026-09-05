@@ -213,7 +213,7 @@ a {
 }
 
 .ticket em,
-.preview {
+.ticket .preview {
   font-style: normal;
   color: #8a4458;
   font-size: 0.78rem;
@@ -221,7 +221,9 @@ a {
 }
 
 .preview {
+  font-style: normal;
   color: var(--mute);
+  font-size: 0.78rem;
 }
 
 .badge {

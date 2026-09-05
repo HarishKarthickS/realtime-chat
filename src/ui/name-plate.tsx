@@ -16,7 +16,7 @@ export function NamePlate({ you, onSave }: Props) {
     setDraft(you?.displayName ?? "");
   }, [you?.displayName]);
 
-  if (!you) return <p className="preview">unsigned</p>;
+  if (!you) return <p className="preview">no name on the check</p>;
 
   function submit(event: FormEvent) {
     event.preventDefault();
@@ -28,8 +28,8 @@ export function NamePlate({ you, onSave }: Props) {
 
   if (!open) {
     return (
-      <button type="button" className="room-btn" style={{ padding: "0.2rem 0" }} onClick={() => setOpen(true)}>
-        signing as {you.displayName}
+      <button type="button" className="name-btn" onClick={() => setOpen(true)}>
+        check for {you.displayName}
       </button>
     );
   }
@@ -37,19 +37,10 @@ export function NamePlate({ you, onSave }: Props) {
   return (
     <form onSubmit={submit}>
       <label className="col-head" htmlFor="you-name" style={{ padding: 0 }}>
-        what should the building call you
+        name on the check
       </label>
       <div className="composer-row">
-        <input
-          id="you-name"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          style={{
-            background: "#0c0b09",
-            border: "1px solid var(--rule)",
-            padding: "0.4rem 0.5rem",
-          }}
-        />
+        <input id="you-name" className="name-field" value={draft} onChange={(e) => setDraft(e.target.value)} />
         <button className="send" type="submit">
           keep
         </button>

@@ -12,13 +12,13 @@ export function PresenceRail({ room, presence }: Props) {
   const members = room ? membersInRoom(presence, room.id) : [];
 
   return (
-    <aside className="col" aria-label="Who is still up">
-      <div className="col-head">still up</div>
+    <aside className="col" aria-label="Who is at the counter">
+      <div className="col-head">at the counter</div>
       <div className="presence">
         {members.length === 0 ? (
           <QuietState
-            title="You are the only lamp on"
-            body="Join a room and wait. People wander in after the last train."
+            title="Just you and the pie case"
+            body="Slide into a booth. Regulars wander in after last call."
           />
         ) : null}
         {members.map((member) => (
