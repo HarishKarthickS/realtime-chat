@@ -1,6 +1,7 @@
 "use client";
 
 import { formatClock, previewForRoom, sortPreviews, type ChatMessage, type Room, type RoomId } from "@/domain";
+import { QuietState } from "@/ui/empty-states";
 
 type Props = {
   rooms: Room[];
@@ -16,6 +17,12 @@ export function RoomList({ rooms, messages, unread, activeRoomId, onPick }: Prop
   return (
     <section className="col" aria-label="Rooms">
       <div className="col-head">rooms in the building</div>
+      {rooms.length === 0 ? (
+        <QuietState
+          title="The directory is blank"
+          body="No rooms on this floor yet. If the wire is down, the names will not show."
+        />
+      ) : (
       <ul className="room-list">
         {previews.map(({ room, lastBody, lastAt, unread: count }) => (
           <li key={room.id}>
@@ -38,6 +45,7 @@ export function RoomList({ rooms, messages, unread, activeRoomId, onPick }: Prop
           </li>
         ))}
       </ul>
+      )}
     </section>
   );
 }

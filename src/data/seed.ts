@@ -36,6 +36,12 @@ export const SEED_ROOMS: Room[] = [
     kind: "roof",
     subtitle: "wind, pigeons, the 4 train",
   },
+  {
+    id: "room_laundry",
+    name: "Basement laundry",
+    kind: "hallway",
+    subtitle: "machines that eat quarters and never finish",
+  },
 ];
 
 export const SEED_MESSAGES: ChatMessage[] = [

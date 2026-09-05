@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useWire } from "@/data";
 import { Composer } from "@/ui/composer";
+import { WireError } from "@/ui/empty-states";
 import { NightDesk } from "@/ui/night-desk";
 import { PresenceRail } from "@/ui/presence-rail";
 import { RoomList } from "@/ui/room-list";
@@ -41,6 +42,9 @@ export function DeskApp() {
         onPick={wire.joinRoom}
       />
       <section className="thread col">
+        {wire.errorDetail && wire.connection !== "live" ? (
+          <WireError detail={wire.errorDetail} onRetry={wire.retryNow} />
+        ) : null}
         <Thread room={wire.activeRoom} you={wire.you} messages={wire.thread} />
         <Composer disabled={!live || !wire.activeRoom} onSend={wire.say} />
       </section>
