@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -k -n web,wire -c cyan,yellow \"next dev --port 3000\" \"tsx watch server/index.ts\"",
+    "dev": "concurrently -k -n web,wire -c cyan,yellow \"next dev --port 3000\" \"tsx server/index.ts\"",
     "dev:web": "next dev --port 3000",
-    "dev:ws": "tsx watch server/index.ts",
+    "dev:ws": "tsx server/index.ts",
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "next lint"
