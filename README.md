@@ -1,8 +1,8 @@
 # realtime-chat
 
-A vinyl diner booth for late talk. Pick a ticket (fire escape, kitchen at 1am, night shift, water tower, basement laundry), see who is at the counter, and pass a napkin. History is seeded so the joint already has gossip when you slide in.
+A Slack-style workspace for live talk: channel list, thread, composer, and presence. History is seeded so rooms already have messages when you join.
 
-![Vinyl diner booth](docs/booth.png)
+![Workspace](docs/workspace.png)
 
 ## Run it
 
@@ -18,7 +18,7 @@ That starts two processes:
 - web UI at [http://localhost:3000](http://localhost:3000)
 - WebSocket wire at `ws://127.0.0.1:3001`
 
-You should see a deep burgundy booth: ticket stubs on the left with last lines and times, a thread in the middle (Mira, Jules, Tess, Anil, the super), and an **at the counter** rail on the right once you join. Type on the **chrome napkin bar** and hit pass — another browser tab on the same booth should get it live. **Basement laundry** has no history; that is the blank-napkin empty state.
+You should see an aubergine sidebar of channels (fire escape, kitchen at 1am, night shift, water tower, basement laundry), a white thread in the middle (Mira, Jules, Tess, Anil, the super), and a **Members** rail on the right once you join. Type in **Message** and hit Send — another browser tab on the same workspace should get it live. **Basement laundry** has no history; that is the empty-channel state.
 
 If port 3000 or 3001 is taken, stop the other process or override:
 
@@ -30,16 +30,16 @@ npx next dev --port 3020
 npx tsx server/index.ts
 ```
 
-If the composer says the bar is locked, the socket is down — the banner **kick the jukebox** retries.
+If the composer says **Connecting…**, the socket is down — the banner **Retry** reconnects. Status in the sidebar reads **Connecting…**, **Connected**, or **Offline**.
 
 ## Layout
 
 - `src/domain` — rooms, messages, presence, clocks
 - `src/data` — seed history, in-memory store, protocol, `useWire`
-- `src/ui` — booth chrome, thread, napkin bar
+- `src/ui` — workspace shell, thread, composer
 - `server/index.ts` — WebSocket server
 
-No accounts. Your handle is stored in `localStorage` as `Night owl NNN` until you click the check and rename.
+No accounts. Your handle is stored in `localStorage` as `Night owl NNN` until you click it and rename.
 
 ## License
 
